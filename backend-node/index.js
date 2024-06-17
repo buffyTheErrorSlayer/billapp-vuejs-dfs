@@ -3,6 +3,7 @@ const cors = require('cors')
 
 // import des routes qui viennent du dossier routes
 const billRoutes =  require('./routes/bills.js')
+const clientRoutes =  require('./routes/clients.js')
 
 const app = express()
 app.use(express.json())
@@ -13,6 +14,7 @@ app.use(cors({
 }))
 
 app.use('/bills', billRoutes)
+app.use('/clients', clientRoutes)
 
 app.get('/', (req, res) => {
   res.send({

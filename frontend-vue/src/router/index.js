@@ -34,6 +34,13 @@ const router = createRouter({
       name: 'create-bill',
       component: () => import('../views/CreateBillView.vue')
     },
+
+    {
+      path: '/clients',
+      name: 'clients',
+      component: () => import('../views/ClientListView.vue')
+    },
+
     // {
     //   path: '/about',
     //   name: 'about',

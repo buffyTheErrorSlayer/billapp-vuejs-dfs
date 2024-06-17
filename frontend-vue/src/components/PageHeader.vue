@@ -6,13 +6,19 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <RouterLink class="nav-link" aria-current="page" to="/">Home</RouterLink>
+                        <RouterLink class="nav-link" aria-current="page" to="/">
+                            <i class="fa-solid fa-house"></i> Home
+                        </RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" aria-current="page" to="/bills">Factures</RouterLink>
+                        <RouterLink class="nav-link" aria-current="page" to="/bills">
+                            <i class="fa-solid fa-file-lines"></i> Factures
+                        </RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" aria-current="page" to="/create-bill">Créér</RouterLink>
+                        <RouterLink class="nav-link" aria-current="page" to="/clients">
+                            <i class="fa-solid fa-users"></i> Clients
+                        </RouterLink>
                     </li>
 
                 </ul>
