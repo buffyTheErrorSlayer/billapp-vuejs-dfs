@@ -85,6 +85,7 @@ module.exports = {
                 bills[updatedBillIndex] = {...updatedBill}
             } else {
                 res.sendStatus(404)
+                return
             }
 
             fs.writeFileSync(
@@ -110,7 +111,7 @@ module.exports = {
             let bills = JSON.parse(data)
 
             const id = req.params.id
-            bills = bills.filter(bill => bill.id !== id)
+            bills = bills.filter(bill => bill.id != id)
 
             fs.writeFileSync(
                 path.resolve(__dirname, '../db/bills.json'),

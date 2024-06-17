@@ -8,24 +8,32 @@ export const useBillsStore = defineStore('bill', {
     }),
     getters: {},
     actions: {
-        setBill(id) {
-            this.bill = this.bills.find((b) => b.id == id)
-        },
-        onDeleteBill(bill) {
-            // on recherche l'index de la facture à supprimer, et on retourne un nouveau tableau de bills sans celle-ci
-            this.bills = this.bills.filter((b) => b.id !== bill.id)
-        },
-        onUpdateBill(bill) {
-            const i = this.bills.findIndex((b) => b.id === bill.id)
-            // je mets à jout les données dans le store bills
-            this.bills[i] = { ...bill }
-            // je vidange la donnée d'édition d'une bill
-            this.bill = null
+        // récupère les données depuis l'API : fonction asynchrone
+        async getAllBills() {
+            const response = await this.$http.get('/bills')
+            this.bills = response.data
         },
 
-        onCreateBill(bill) {
-            bill.id = uuidv4()
-            this.bills.push(bill)
+        async setBill(id) {
+            const response = await this.$http.get('/bills/' + id)
+            this.bill = response.data
+        },
+        
+        async onDeleteBill(bill) {
+            const response = await this.$http.delete('/bills/' + bill.id)
+            await this.getAllBills()
+        },
+
+        async onUpdateBill(bill) {
+            const response = await this.$http.patch('/bills/' + bill.id, bill)
+            this.bill = null
+            await this.getAllBills()
+        },
+
+        async onCreateBill(bill) {
+            const response = await this.$http.post('/bills', bill)
+            this.bill = null
+            await this.getAllBills()
         }
     }
 })

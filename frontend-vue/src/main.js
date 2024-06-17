@@ -10,6 +10,9 @@ const pinia = createPinia()
 const app = createApp(App)
 
 app.use(axiosPlugin)
+pinia.use(({ store }) => {
+    store.$http = app.config.globalProperties.$http
+  })
 app.use(pinia)
 app.use(router)
 

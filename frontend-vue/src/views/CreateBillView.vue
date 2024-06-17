@@ -2,10 +2,10 @@
 
   <div class="container" v-if="bill">
     <SectionTitle>
-      <template #title>Modifier une facture</template>
+      <template #title>Créer une facture</template>
       <template #buttons>
-        <button @click="deleteBill(bill)" class="btn btn-outline-danger me-1"> <i class="fa-solid fa-trash"></i>
-          Supprimer</button>
+        <!--<button @click="deleteBill(bill)" class="btn btn-outline-danger me-1"> <i class="fa-solid fa-trash"></i>
+          Supprimer</button>-->
         <BackButton />
       </template>
     </SectionTitle>
@@ -192,6 +192,7 @@ export default {
   methods: {
     createBill() {
       this.bill = {
+        id : '',
         billnum: '',
         description: '',
         date: '',

@@ -44,7 +44,14 @@ export default {
   computed: {
     ...mapState(useBillsStore, ['bills'])
   },
+
+  async mounted() {
+    // récupère les données de l'API
+    await this.getAllBills()
+  },
+
   methods: {
+    ...mapActions(useBillsStore, ['onDeleteBill', 'getAllBills']),
 
     onCreateBill() {
       this.$router.push({ name: 'create-bill' })
@@ -56,7 +63,6 @@ export default {
       //Alternative :
       // this.$router.push({ path: `/edit-bill/${bill.id}` })
     },
-    ...mapActions(useBillsStore, ['onDeleteBill']),
 
   }
 }
