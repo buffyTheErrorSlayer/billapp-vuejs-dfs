@@ -48,6 +48,10 @@ export default {
 
     onEditClient(client){
       this.$router.push({ name: 'edit-client', params: { id: client.idclient } })
+    },
+
+    onCreateClient() {
+      this.$router.push({ name: 'edit-client',  params: { id: '-1' } })
     }
   },
 

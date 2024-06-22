@@ -111,7 +111,7 @@
                 <div class="col form-date-ajout">
                     <label class="form-label" for="dateAjout">Date d'ajout :</label>
                     <input type="date" v-model="client.dateAjout" name="dateAjout" id="dateAjout"
-                        class="form-control" />
+                        class="form-control" :class="{ 'is-invalid': !client.dateAjout}" />
 
                 </div>
             </div>
@@ -167,14 +167,14 @@ export default {
         this.getClient(this.id)
     },
     methods: {
-        ...mapActions(useClientsStore, ['getClient', 'onUpdateClient', 'onDeleteClient']),
+        ...mapActions(useClientsStore, ['getClient', 'onAddClient' , 'onUpdateClient', 'onDeleteClient']),
 
         saveClient(client) {
-            // if (this.isNewClient) {
-            //     this.onAddClient(client)
-            // } else {
+            if (this.isNewClient) {
+                this.onAddClient(client)
+            } else {
                 this.onUpdateClient(client)
-            // }
+            }
 
             this.$router.push({path: '/clients'})
         },

@@ -40,7 +40,27 @@ module.exports = {
 
     },
 
-    // postOne: (req, res) => {},
+    postOne: (req, res) => {
+        try{
+            const data = fs.readFileSync(
+                path.resolve(__dirname, '../db/clients.json')
+            )
+            let clients = JSON.parse(data)
+            const newClient = { ...req.body, idclient: uuid() }
+    
+            clients.push(newClient)
+    
+            fs.writeFileSync(
+                path.resolve(__dirname, '../db/clients.json'),
+                JSON.stringify(clients)
+            )
+            res.json(newClient)
+
+        } catch(err){
+            res.sendStatus(500)
+            throw err;
+        }
+    },
 
     patchOne: (req, res) => {
         try {

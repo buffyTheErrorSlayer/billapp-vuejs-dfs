@@ -15,9 +15,27 @@ export const useClientsStore = defineStore('client', {
         },
         
         async getClient(id) {
-            const response = await this.$http.get('/clients/' + id)
-            this.client = response.data
-            console.log(this.client)
+
+            if(id == '-1'){
+                this.client = {
+                    idclient: -1,
+                    nom: '',
+                    prenom: '',
+                    adresse: {
+                        adresse1 :'',
+                        adresse2: '',
+                        codePostal: '',
+                        ville: '',
+                        pays: '',
+                    },
+                    telephone: '',
+                    email: '',
+                    dateAjout : ''
+                }
+            } else {
+                const response = await this.$http.get('/clients/' + id)
+                this.client = response.data
+            }
         },
 
         async onDeleteClient(client) {
@@ -30,6 +48,12 @@ export const useClientsStore = defineStore('client', {
             this.client = null
             await this.getAllClients()
         },
+
+        async onAddClient(client) {
+            const response = await this.$http.post('/clients', client)
+            this.client = null
+            await this.getAllClients()
+        }
 
     }
 })
