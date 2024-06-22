@@ -40,6 +40,16 @@ const router = createRouter({
       name: 'clients',
       component: () => import('../views/ClientListView.vue')
     },
+    {
+      path: '/edit-bill',
+      redirect: '/create-bill'
+    },
+    {
+      path: '/edit-client/:id',
+      props:true,
+      name: 'edit-client',
+      component: () => import('../views/CreateEditClientView.vue')
+    },
 
     // {
     //   path: '/about',

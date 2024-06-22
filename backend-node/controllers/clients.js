@@ -17,7 +17,28 @@ module.exports = {
         }
     },
 
-    // getOne: (req, res) => {},
+    getOne: (req, res) => {
+
+        try {
+            const data = fs.readFileSync(
+                path.resolve(__dirname, '../db/clients.json')
+            )
+            const clients = JSON.parse(data)
+
+            const id = req.params.id
+            const client = clients.find(client => client.idclient == id);
+
+            if (client) {
+                res.json(client)
+            } else {
+                res.sendStatus(404)
+            }
+        } catch (err) {
+            res.sendStatus(500)
+            throw err;
+        }
+
+    },
 
     // postOne: (req, res) => {},
 
@@ -37,10 +58,11 @@ module.exports = {
                 JSON.stringify(clients)
             )
             res.sendStatus(200);
-            
+
         } catch (err) {
             res.sendStatus(500)
             throw err;
         }
-    }
+    },
+
 }

@@ -11,7 +11,13 @@ export const useClientsStore = defineStore('client', {
         async getAllClients() {
             const response = await this.$http.get('/clients')
             this.clients = response.data
-            console.log(this.clients)
+            
+        },
+        
+        async getClient(id) {
+            const response = await this.$http.get('/clients/' + id)
+            this.client = response.data
+            console.log(this.client)
         },
 
         async onDeleteClient(client) {

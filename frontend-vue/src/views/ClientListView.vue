@@ -17,7 +17,7 @@
             </template>
 
             <template #tbody>
-                <ClientTableRow v-for="client in clients" :key="client.idclient"  :client="client" @delete="onDeleteClient($event)"/>
+                <ClientTableRow v-for="client in clients" :key="client.idclient"  :client="client" @delete="onDeleteClient($event)" @edit="onEditClient($event)"/>
             </template>
         </TableList>
         
@@ -46,6 +46,9 @@ export default {
   methods: {
     ...mapActions(useClientsStore, [ 'onDeleteClient', 'getAllClients']),
 
+    onEditClient(client){
+      this.$router.push({ name: 'edit-client', params: { id: client.idclient } })
+    }
   },
 
 
