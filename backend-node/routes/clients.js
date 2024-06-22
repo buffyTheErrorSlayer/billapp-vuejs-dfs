@@ -8,6 +8,8 @@ router.get('/', ctrl.getAll)
 
 router.get('/:id', ctrl.getOne)
 
+router.patch('/:id', ctrl.patchOne)
+
 router.delete('/:id', ctrl.deleteOne)
 
 

@@ -1,9 +1,10 @@
 <template>
     <div class="container" v-if="client">
         <SectionTitle>
-            <template #title>Créer un client</template>
+            <template v-if="isNewClient" #title>Créer un client</template>
+            <template v-if="!isNewClient" #title>Editer un client</template>
             <template #buttons>
-                <button @click="deleteBill(bill)" class="btn btn-outline-danger me-1"> <i class="fa-solid fa-trash"></i>
+                <button v-if="!isNewClient" @click="onDeleteClient(client)" class="btn btn-outline-danger me-1"> <i class="fa-solid fa-trash"></i>
                     Supprimer</button>
                 <BackButton />
             </template>
@@ -119,7 +120,7 @@
 
 
 
-            <button @click="onSaveBill(bill)" class="btn btn-outline-dark align mt-4">Enregistrer</button>
+            <button @click="saveClient(client)" :disabled="formInvalid" class="btn btn-outline-dark align mt-4">Enregistrer</button>
 
         </div>
 
@@ -152,13 +153,31 @@ export default {
     },
     computed: {
         ...mapWritableState(useClientsStore, ['client']),
+
+        isNewClient(){
+            return this.id == '-1'
+        },
+
+        formInvalid() {
+            return!this.client.firstName ||!this.client.lastName ||!this.client.telephone ||!this.client.email ||!this.client.companyName ||!this.client.adresse.adresse1 ||!this.client.adresse.codePostal ||!this.client.adresse.ville ||!this.client.adresse.pays;
+        }
     },
 
     mounted() {
         this.getClient(this.id)
     },
     methods: {
-        ...mapActions(useClientsStore, ['getClient']),
+        ...mapActions(useClientsStore, ['getClient', 'onUpdateClient', 'onDeleteClient']),
+
+        saveClient(client) {
+            // if (this.isNewClient) {
+            //     this.onAddClient(client)
+            // } else {
+                this.onUpdateClient(client)
+            // }
+
+            this.$router.push({path: '/clients'})
+        },
     }
 
 

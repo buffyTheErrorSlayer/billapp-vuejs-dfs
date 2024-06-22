@@ -25,5 +25,11 @@ export const useClientsStore = defineStore('client', {
             await this.getAllClients()
         },
 
+        async onUpdateClient(client) {
+            const response = await this.$http.patch('/clients/' + client.idclient, client)
+            this.client = null
+            await this.getAllClients()
+        },
+
     }
 })

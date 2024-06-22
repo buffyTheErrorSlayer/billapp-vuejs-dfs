@@ -42,7 +42,35 @@ module.exports = {
 
     // postOne: (req, res) => {},
 
-    // patchOne: (req, res) => {},
+    patchOne: (req, res) => {
+        try {
+            const data = fs.readFileSync(
+                path.resolve(__dirname, '../db/clients.json')
+            )
+            let clients = JSON.parse(data)
+
+            const id = req.params.id
+            let updatedClient = clients.find(client => client.idclient == id);
+            let updatedClientIndex = clients.findIndex(client => client.idclient == id)
+
+            if (updatedClient) {
+                updatedClient = {...updatedClient,...req.body }
+                clients[updatedClientIndex] = {...updatedClient }
+                fs.writeFileSync(
+                    path.resolve(__dirname, '../db/clients.json'),
+                    JSON.stringify(clients)
+                )
+                res.json(updatedClient)
+            } else {
+                res.sendStatus(404)
+                return
+            }
+
+        } catch (err) {
+            res.sendStatus(500)
+            throw err;
+        }
+    },
 
     deleteOne: (req, res) => {
         try {
