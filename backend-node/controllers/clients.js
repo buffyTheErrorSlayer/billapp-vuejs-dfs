@@ -17,15 +17,30 @@ module.exports = {
         }
     },
 
-    // récupérer une seule facture en fonction de son id
     // getOne: (req, res) => {},
 
-    // // mettre àjour une facture en fonction de son id
     // postOne: (req, res) => {},
 
-    // // mettre àjour une facture en fonction de son id
     // patchOne: (req, res) => {},
 
-    // // supprimer une facture en fonction de son id
-    // deleteOne: (req, res) => {},
+    deleteOne: (req, res) => {
+        try {
+            const data = fs.readFileSync(
+                path.resolve(__dirname, '../db/clients.json')
+            )
+            let clients = JSON.parse(data)
+            const id = req.params.id
+            clients = clients.filter(client => client.idclient != id)
+
+            fs.writeFileSync(
+                path.resolve(__dirname, '../db/clients.json'),
+                JSON.stringify(clients)
+            )
+            res.sendStatus(200);
+            
+        } catch (err) {
+            res.sendStatus(500)
+            throw err;
+        }
+    }
 }

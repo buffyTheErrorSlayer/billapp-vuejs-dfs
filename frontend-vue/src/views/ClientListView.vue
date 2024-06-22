@@ -17,7 +17,7 @@
             </template>
 
             <template #tbody>
-                <ClientTableRow v-for="client in clients" :key="client.idclient"  :client="client"/>
+                <ClientTableRow v-for="client in clients" :key="client.idclient"  :client="client" @delete="onDeleteClient($event)"/>
             </template>
         </TableList>
         
@@ -44,9 +44,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(useClientsStore, [ 'getAllClients']),
+    ...mapActions(useClientsStore, [ 'onDeleteClient', 'getAllClients']),
 
   },
+
 
   async mounted() {
     // récupère les données de l'API

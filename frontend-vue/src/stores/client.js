@@ -14,5 +14,10 @@ export const useClientsStore = defineStore('client', {
             console.log(this.clients)
         },
 
+        async onDeleteClient(client) {
+            const response = await this.$http.delete('/clients/' + client.idclient)
+            await this.getAllClients()
+        },
+
     }
 })
