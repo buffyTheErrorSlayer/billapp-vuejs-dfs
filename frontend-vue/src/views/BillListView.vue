@@ -20,8 +20,6 @@
     </template>
   </TableList>
 
-  <pre>{{ bills }}</pre>
-
 </template>
 
 <script>
