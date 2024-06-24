@@ -45,11 +45,16 @@ const router = createRouter({
       redirect: '/create-bill'
     },
     {
+      path: '/edit-client',
+      redirect: '/create-client'
+    },
+    {
       path: '/edit-client/:id',
       props:true,
       name: 'edit-client',
       component: () => import('../views/CreateEditClientView.vue')
     },
+    
 
     // {
     //   path: '/about',
