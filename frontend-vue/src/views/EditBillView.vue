@@ -146,7 +146,7 @@
 <script>
 import { mapState, mapWritableState, mapActions } from 'pinia'
 import { useBillsStore } from '@/stores/bill.js'
-import { clients } from '@/datas/clients.js'
+import { useClientsStore } from '@/stores/client.js';
 import SectionTitle from '@/components/SectionTitle.vue'
 import BackButton from '@/components/Buttons/BackButton.vue'
 import TableList from '@/components/TableList/TableList.vue'
@@ -171,14 +171,9 @@ export default {
     }
   },
 
-  data() {
-    return {
-      clients,
-    }
-  },
-
   computed: {
     ...mapWritableState(useBillsStore, ['bill']),
+    ...mapState(useClientsStore, ['clients']),
 
     formInvalid() {
       return !this.bill.client || !this.bill.billnum || !this.bill.date || !this.bill.description
@@ -192,12 +187,14 @@ export default {
       }
     }
   },
-  mounted() {
-    this.setBill(this.id)
+  async mounted() {
+    await this.setBill(this.id);
+    await this.getAllClients()
   },
 
   methods: {
     ...mapActions(useBillsStore, ['onDeleteBill', 'onUpdateBill', 'setBill']),
+    ...mapActions(useClientsStore, [ 'getAllClients']),
 
     onAddPrestation(index) {
       // ajout d'une prestation sous l'élément courant dans le tableau
