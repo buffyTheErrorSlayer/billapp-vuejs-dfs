@@ -16,7 +16,7 @@
 
     <div class="row">
       <div class="col-4">
-
+          <Chart/>
       </div>
       <div class="col">
         <TableList>
@@ -70,6 +70,7 @@
 
 <script>
 import SectionTitle from '@/components/SectionTitle.vue'
+import Chart from '@/components/Chart.vue';
 import TableList from '@/components/TableList/TableList.vue'
 import { mapState, mapActions } from 'pinia'
 import { useBillsStore } from '@/stores/bill.js';
@@ -77,10 +78,12 @@ import { useClientsStore } from '@/stores/client.js';
 
 
 
+
 export default {
   components: {
     SectionTitle,
     TableList,
+    Chart
   },
 
   computed: {

@@ -39,7 +39,7 @@
             }
         ],
         "discount": 0,
-        "paid": 0,
+        "paid": 4080,
         "totalHT": 3400,
         "tva": 20,
         "totalTTC": 4080
@@ -169,7 +169,7 @@
             }
         ],
         "discount": 0,
-        "paid": 0,
+        "paid": 500,
         "totalHT": 1000,
         "tva": 20,
         "totalTTC": 1200

@@ -12,7 +12,6 @@ export const useBillsStore = defineStore('bill', {
         async getAllBills() {
             const response = await this.$http.get('/bills')
             this.bills = response.data
-            console.log(this.bills)
         },
 
         async setBill(id) {
