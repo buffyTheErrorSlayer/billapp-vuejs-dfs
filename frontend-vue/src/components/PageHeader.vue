@@ -2,7 +2,9 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <RouterLink class="navbar-brand" to="/">BILL APP</RouterLink>
+                <RouterLink class="navbar-brand" to="/">
+                    <img class="logo" :src="logo" alt="bill app logo">
+                </RouterLink>
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -30,14 +32,42 @@
 <script>
 
 import { RouterLink, RouterView } from 'vue-router'
+import logo from "@/assets/BILLAPP.png"
 
 export default {
     components: {
         RouterLink,
         RouterView,
+    },
+
+    data(){
+        return {
+            logo : logo
+        }
     }
 }
 
 </script>
 
-<style scoped></style>
+<style >
+
+.logo{
+    height: 100px;
+    width: auto;
+    margin-right: 20px;
+}
+
+.navbar{
+    padding: 0;
+    margin-top: 10px;
+    background-color: white !important;
+    /* border: 1px solid #597ccf; */
+    /* box-shadow: 3px 3px 0px 0px #597ccf; */
+}
+
+.nav-link{
+    color: #597ccf;
+    font-weight: bold;
+}
+
+</style>
