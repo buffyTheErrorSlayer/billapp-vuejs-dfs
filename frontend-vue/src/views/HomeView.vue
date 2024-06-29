@@ -34,7 +34,7 @@
               <td>{{ bill.client.firstName }} {{ bill.client.lastName }}</td>
               <td>{{ bill.totalHT.toFixed(2) }} € </td>
               <td>{{ bill.totalTTC.toFixed(2) }} €</td>
-              <td><button @click="onEditBill()" class="btn btn-outline-primary"> <i class="fa-solid fa-pen"></i>
+              <td><button @click="onEditBill(bill)" class="btn btn-outline-primary"> <i class="fa-solid fa-pen"></i>
                   Editer</button></td>
 
             </tr>
